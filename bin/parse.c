@@ -801,7 +801,11 @@ void parse(){
             break;
         }
         case (char)0x85:{
-            cs_ieg = state_EvGv;
+            if (cs_66p = state_66p){
+                cs_ieg = state_EwGw;
+            } else {
+                cs_ieg = state_EvGv;
+            }
             cs_opcode = state_opcode_test;
             gen_opcode_test();
             gen_space();
@@ -819,7 +823,11 @@ void parse(){
             break;
         }
         case (char)0x87:{
-            cs_ieg = state_EvGv;
+            if (cs_66p = state_66p){
+                cs_ieg = state_EwGw;
+            } else {
+                cs_ieg = state_EvGv;
+            }
             cs_opcode = state_opcode_xchg;
             gen_opcode_xchg();
             gen_space();
