@@ -763,6 +763,188 @@ void parse(){
             cs_opcode = state_opcode_jnbe;
             break;
         }
+        case (char)0x80:{
+            cs_isGrp1 = state_grp1;
+            cs_ieg = state_EbIb;
+            i_index_read ++;
+            parse_modrm();
+            break;
+        }
+        case (char)0x81:{
+            cs_isGrp1 = state_grp1;
+            cs_ieg = state_EvIv;
+            i_index_read ++;
+            parse_modrm();
+            break;
+        }
+        case (char)0x82:{
+            cs_isGrp1 = state_grp1;
+            cs_ieg = state_EbIb;
+            i_index_read ++;
+            parse_modrm();
+            break;
+        }
+        case (char)0x83:{
+            cs_isGrp1 = state_grp1;
+            cs_ieg = state_EvIb;
+            i_index_read ++;
+            parse_modrm();
+            break;
+        }
+        case (char)0x84:{
+            cs_ieg = state_EbGb;
+            cs_opcode = state_opcode_test;
+            gen_opcode_test();
+            gen_space();
+            i_index_read ++;
+            parse_modrm();
+            break;
+        }
+        case (char)0x85:{
+            cs_ieg = state_EvGv;
+            cs_opcode = state_opcode_test;
+            gen_opcode_test();
+            gen_space();
+            i_index_read ++;
+            parse_modrm();
+            break;
+        }
+        case (char)0x86:{
+            cs_ieg = state_EbGb;
+            cs_opcode = state_opcode_xchg;
+            gen_opcode_xchg();
+            gen_space();
+            i_index_read ++;
+            parse_modrm();
+            break;
+        }
+        case (char)0x87:{
+            cs_ieg = state_EvGv;
+            cs_opcode = state_opcode_xchg;
+            gen_opcode_xchg();
+            gen_space();
+            i_index_read ++;
+            parse_modrm();
+            break;
+        }
+        case (char)0x90:{
+            cs_opcode = state_opcode_nop;
+            gen_opcode_nop();
+            i_index_read ++;
+            break;
+        }
+        case (char)0x91:{
+            cs_opcode = state_opcode_xchg;
+            gen_opcode_xchg();
+            i_index_read ++;
+            gen_space();
+            if (cs_66p == state_66p){
+                gen_code_cx();
+                gen_comma();
+                gen_code_ax();
+            } else {
+                gen_code_ecx();
+                gen_comma();
+                gen_code_eax();
+            }
+            break;
+        }
+        case (char)0x92:{
+            cs_opcode = state_opcode_xchg;
+            gen_opcode_xchg();
+            i_index_read ++;
+            gen_space();
+            if (cs_66p == state_66p){
+                gen_code_dx();
+                gen_comma();
+                gen_code_ax();
+            } else {
+                gen_code_edx();
+                gen_comma();
+                gen_code_eax();
+            }
+            break;
+        }
+        case (char)0x93:{
+            cs_opcode = state_opcode_xchg;
+            gen_opcode_xchg();
+            i_index_read ++;
+            gen_space();
+            if (cs_66p == state_66p){
+                gen_code_bx();
+                gen_comma();
+                gen_code_ax();
+            } else {
+                gen_code_ebx();
+                gen_comma();
+                gen_code_eax();
+            }
+            break;
+        }
+        case (char)0x94:{
+            cs_opcode = state_opcode_xchg;
+            gen_opcode_xchg();
+            i_index_read ++;
+            gen_space();
+            if (cs_66p == state_66p){
+                gen_code_sp();
+                gen_comma();
+                gen_code_ax();
+            } else {
+                gen_code_esp();
+                gen_comma();
+                gen_code_eax();
+            }
+            break;
+        }
+        case (char)0x95:{
+            cs_opcode = state_opcode_xchg;
+            gen_opcode_xchg();
+            i_index_read ++;
+            gen_space();
+            if (cs_66p == state_66p){
+                gen_code_bp();
+                gen_comma();
+                gen_code_ax();
+            } else {
+                gen_code_ebp();
+                gen_comma();
+                gen_code_eax();
+            }
+            break;
+        }
+        case (char)0x96:{
+            cs_opcode = state_opcode_xchg;
+            gen_opcode_xchg();
+            i_index_read ++;
+            gen_space();
+            if (cs_66p == state_66p){
+                gen_code_si();
+                gen_comma();
+                gen_code_ax();
+            } else {
+                gen_code_esi();
+                gen_comma();
+                gen_code_eax();
+            }
+            break;
+        }
+        case (char)0x97:{
+            cs_opcode = state_opcode_xchg;
+            gen_opcode_xchg();
+            i_index_read ++;
+            gen_space();
+            if (cs_66p == state_66p){
+                gen_code_di();
+                gen_comma();
+                gen_code_ax();
+            } else {
+                gen_code_edi();
+                gen_comma();
+                gen_code_eax();
+            }
+            break;
+        }
         // !!!
         default:{
             break;

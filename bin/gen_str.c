@@ -4,13 +4,11 @@
 void gen_1b_imm(){
     char* c_temp = dig2hex(contain[i_index_read]);
     i_index_read ++;
-    asm_code[i_len_temp_asm] = '0';
-    i_len_temp_asm ++;
-    asm_code[i_len_temp_asm] = 'x';
-    i_len_temp_asm ++;
     asm_code[i_len_temp_asm] = c_temp[0];
     i_len_temp_asm ++;
     asm_code[i_len_temp_asm] = c_temp[1];
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'h';
     i_len_temp_asm ++;
 }
 
@@ -19,10 +17,6 @@ void gen_2b_imm(){
     i_index_read ++;
     char* c_temp2 = dig2hex(contain[i_index_read]);
     i_index_read ++;
-    asm_code[i_len_temp_asm] = '0';
-    i_len_temp_asm ++;
-    asm_code[i_len_temp_asm] = 'x';
-    i_len_temp_asm ++;
     asm_code[i_len_temp_asm] = c_temp2[0];
     i_len_temp_asm ++;
     asm_code[i_len_temp_asm] = c_temp2[1];
@@ -30,6 +24,8 @@ void gen_2b_imm(){
     asm_code[i_len_temp_asm] = c_temp1[0];
     i_len_temp_asm ++;
     asm_code[i_len_temp_asm] = c_temp1[1];
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'h';
     i_len_temp_asm ++;
 }
 
@@ -42,10 +38,6 @@ void gen_4b_imm(){
     i_index_read ++;
     char* c_temp4 = dig2hex(contain[i_index_read]);
     i_index_read ++;
-    asm_code[i_len_temp_asm] = '0';
-    i_len_temp_asm ++;
-    asm_code[i_len_temp_asm] = 'x';
-    i_len_temp_asm ++;
     asm_code[i_len_temp_asm] = c_temp4[0];
     i_len_temp_asm ++;
     asm_code[i_len_temp_asm] = c_temp4[1];
@@ -61,6 +53,8 @@ void gen_4b_imm(){
     asm_code[i_len_temp_asm] = c_temp1[0];
     i_len_temp_asm ++;
     asm_code[i_len_temp_asm] = c_temp1[1];
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'h';
     i_len_temp_asm ++;
 }
 
@@ -304,6 +298,37 @@ void gen_opcode_jnbe(){
     asm_code[i_len_temp_asm] = 'b';
     i_len_temp_asm ++;
     asm_code[i_len_temp_asm] = 'e';
+    i_len_temp_asm ++;
+}
+
+void gen_opcode_test(){
+    asm_code[i_len_temp_asm] = 't';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'e';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 's';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 't';
+    i_len_temp_asm ++;
+}
+
+void gen_opcode_xchg(){
+    asm_code[i_len_temp_asm] = 'x';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'c';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'h';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'g';
+    i_len_temp_asm ++;
+}
+
+void gen_opcode_nop(){
+    asm_code[i_len_temp_asm] = 'n';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'o';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'p';
     i_len_temp_asm ++;
 }
 

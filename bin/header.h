@@ -91,6 +91,9 @@ enum code_state{
     state_opcode_jnz,
     state_opcode_jbe,
     state_opcode_jnbe,
+    state_opcode_test,
+    state_opcode_xchg,
+    state_opcode_nop,
 
     state_end
 };
@@ -131,6 +134,9 @@ void gen_opcode_jz();       // jz
 void gen_opcode_jnz();      // jnz
 void gen_opcode_jbe();      // jbe
 void gen_opcode_jnbe();     // jnbe
+void gen_opcode_test();     // test
+void gen_opcode_xchg();     // xchg
+void gen_opcode_nop();      // nop
 
 void gen_space();           //  
 void gen_comma();           // ,
