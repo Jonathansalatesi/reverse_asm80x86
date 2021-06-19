@@ -953,6 +953,280 @@ void parse(){
             }
             break;
         }
+        case (char)0xa0:{
+            // mov al, byte ptr ds:[xxh]
+            cs_opcode = state_opcode_mov;
+            gen_opcode_mov();
+            i_index_read ++;
+            gen_space();
+            gen_code_al();
+            gen_comma();
+            gen_code_byte();
+            gen_space();
+            gen_code_ptr();
+            gen_space();
+            gen_code_ds();
+            gen_colon();
+            gen_lbracket();
+            gen_1b_imm();
+            gen_rbracket();
+            break;
+        }
+        case (char)0xa1:{
+            cs_opcode = state_opcode_mov;
+            gen_opcode_mov();
+            i_index_read ++;
+            gen_space();
+            if (cs_66p == state_66p){
+                // mov ax, word ptr ds:[xxxxh]
+                gen_code_ax();
+                gen_comma();
+                gen_code_word();
+                gen_space();
+                gen_code_ptr();
+                gen_space();
+                gen_code_ds();
+                gen_colon();
+                gen_lbracket();
+                gen_2b_imm();
+                gen_rbracket();
+            } else {
+                // mov eax, dword ptr ds:[xxxx xxxxh]
+                gen_code_eax();
+                gen_comma();
+                gen_code_dword();
+                gen_space();
+                gen_code_ptr();
+                gen_space();
+                gen_code_ds();
+                gen_colon();
+                gen_lbracket();
+                gen_4b_imm();
+                gen_rbracket();
+            }
+            break;
+        }
+        case (char)0xa2:{
+            // mov byte ptr ds:[xxh], al
+            cs_opcode = state_opcode_mov;
+            gen_opcode_mov();
+            i_index_read ++;
+            gen_space();
+            gen_code_byte();
+            gen_space();
+            gen_code_ptr();
+            gen_space();
+            gen_code_ds();
+            gen_colon();
+            gen_lbracket();
+            gen_1b_imm();
+            gen_rbracket();
+            gen_comma();
+            gen_code_al();
+            break;
+        }
+        case (char)0xa3:{
+            cs_opcode = state_opcode_mov;
+            gen_opcode_mov();
+            i_index_read ++;
+            gen_space();
+            if (cs_66p == state_66p){
+                // mov word ptr ds:[xxxxh], ax
+                gen_code_word();
+                gen_space();
+                gen_code_ptr();
+                gen_space();
+                gen_code_ds();
+                gen_colon();
+                gen_lbracket();
+                gen_2b_imm();
+                gen_rbracket();
+                gen_comma();
+                gen_code_ax();
+            } else {
+                // mov dword ptr ds:[xxxx xxxxh], eax
+                gen_code_dword();
+                gen_space();
+                gen_code_ptr();
+                gen_space();
+                gen_code_ds();
+                gen_colon();
+                gen_lbracket();
+                gen_4b_imm();
+                gen_rbracket();
+                gen_comma();
+                gen_code_eax();
+            }
+            break;
+        }
+        case (char)0xa4:{
+            // movs byte ptr es:[edi], byte ptr ds:[esi]
+            // That can be simplified as movsb
+            gen_opcode_movs();
+            cs_opcode = state_opcode_movs;
+            i_index_read ++;
+            gen_space();
+            gen_code_byte();
+            gen_space();
+            gen_code_ptr();
+            gen_space();
+            gen_code_es();
+            gen_colon();
+            gen_lbracket();
+            gen_code_edi();
+            gen_rbracket();
+            gen_comma();
+            gen_code_byte();
+            gen_space();
+            gen_code_ptr();
+            gen_space();
+            gen_code_ds();
+            gen_colon();
+            gen_lbracket();
+            gen_code_esi();
+            gen_rbracket();
+            break;
+        }
+        case (char)0xa5:{
+            if (cs_66p == state_66p){
+                // movs word ptr es:[edi], word ptr ds:[esi]
+                // That can be simplified as movsw
+                gen_opcode_movs();
+                cs_opcode = state_opcode_movs;
+                i_index_read ++;
+                gen_space();
+                gen_code_word();
+                gen_space();
+                gen_code_ptr();
+                gen_space();
+                gen_code_es();
+                gen_colon();
+                gen_lbracket();
+                gen_code_edi();
+                gen_rbracket();
+                gen_comma();
+                gen_code_word();
+                gen_space();
+                gen_code_ptr();
+                gen_space();
+                gen_code_ds();
+                gen_colon();
+                gen_lbracket();
+                gen_code_esi();
+                gen_rbracket();
+            } else {
+                // movs dword ptr es:[edi], dword ptr ds:[esi]
+                // That can be simplified as movsd
+                gen_opcode_movs();
+                cs_opcode = state_opcode_movs;
+                i_index_read ++;
+                gen_space();
+                gen_code_dword();
+                gen_space();
+                gen_code_ptr();
+                gen_space();
+                gen_code_es();
+                gen_colon();
+                gen_lbracket();
+                gen_code_edi();
+                gen_rbracket();
+                gen_comma();
+                gen_code_dword();
+                gen_space();
+                gen_code_ptr();
+                gen_space();
+                gen_code_ds();
+                gen_colon();
+                gen_lbracket();
+                gen_code_esi();
+                gen_rbracket();
+            }
+            break;
+        }
+        case (char)0xa6:{
+            // cmps byte ptr ds:[esi], byte ptr es:[edi]
+            // That can be simplified as cmpsb
+            gen_opcode_cmps();
+            cs_opcode = state_opcode_cmps;
+            i_index_read ++;
+            gen_space();
+            gen_code_byte();
+            gen_space();
+            gen_code_ptr();
+            gen_space();
+            gen_code_ds();
+            gen_colon();
+            gen_lbracket();
+            gen_code_esi();
+            gen_rbracket();
+            gen_comma();
+            gen_code_byte();
+            gen_space();
+            gen_code_ptr();
+            gen_space();
+            gen_code_es();
+            gen_colon();
+            gen_lbracket();
+            gen_code_edi();
+            gen_rbracket();
+            break;
+        }
+        case (char)0xa7:{
+            if (cs_66p == state_66p){
+                // cmps word ptr ds:[esi], word ptr es:[edi]
+                // That can be simplified as cmpsw
+                gen_opcode_cmps();
+                cs_opcode = state_opcode_cmps;
+                i_index_read ++;
+                gen_space();
+                gen_code_word();
+                gen_space();
+                gen_code_ptr();
+                gen_space();
+                gen_code_ds();
+                gen_colon();
+                gen_lbracket();
+                gen_code_esi();
+                gen_rbracket();
+                gen_comma();
+                gen_code_word();
+                gen_space();
+                gen_code_ptr();
+                gen_space();
+                gen_code_es();
+                gen_colon();
+                gen_lbracket();
+                gen_code_edi();
+                gen_rbracket();
+            } else {
+                // cmps dword ptr ds:[esi], dword ptr es:[edi]
+                // That can be simplified as cmpsd
+                gen_opcode_cmps();
+                cs_opcode = state_opcode_cmps;
+                i_index_read ++;
+                gen_space();
+                gen_code_dword();
+                gen_space();
+                gen_code_ptr();
+                gen_space();
+                gen_code_ds();
+                gen_colon();
+                gen_lbracket();
+                gen_code_esi();
+                gen_rbracket();
+                gen_comma();
+                gen_code_dword();
+                gen_space();
+                gen_code_ptr();
+                gen_space();
+                gen_code_es();
+                gen_colon();
+                gen_lbracket();
+                gen_code_edi();
+                gen_rbracket();
+            }
+            break;
+        }
         // !!!
         default:{
             break;

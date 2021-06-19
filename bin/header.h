@@ -94,6 +94,9 @@ enum code_state{
     state_opcode_test,
     state_opcode_xchg,
     state_opcode_nop,
+    state_opcode_mov,
+    state_opcode_movs,
+    state_opcode_cmps,
 
     state_end
 };
@@ -137,6 +140,9 @@ void gen_opcode_jnbe();     // jnbe
 void gen_opcode_test();     // test
 void gen_opcode_xchg();     // xchg
 void gen_opcode_nop();      // nop
+void gen_opcode_mov();      // mov
+void gen_opcode_movs();     // movs
+void gen_opcode_cmps();     // cmps
 
 void gen_space();           //  
 void gen_comma();           // ,

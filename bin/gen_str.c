@@ -332,6 +332,37 @@ void gen_opcode_nop(){
     i_len_temp_asm ++;
 }
 
+void gen_opcode_mov(){
+    asm_code[i_len_temp_asm] = 'm';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'o';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'v';
+    i_len_temp_asm ++;
+}
+
+void gen_opcode_movs(){
+    asm_code[i_len_temp_asm] = 'm';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'o';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'v';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 's';
+    i_len_temp_asm ++;
+}
+
+void gen_opcode_cmps(){
+    asm_code[i_len_temp_asm] = 'c';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'm';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'p';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 's';
+    i_len_temp_asm ++;
+}
+
 /// symbol
 //  
 void gen_space(){
