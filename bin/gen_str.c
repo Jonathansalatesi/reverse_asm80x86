@@ -363,6 +363,33 @@ void gen_opcode_cmps(){
     i_len_temp_asm ++;
 }
 
+void gen_opcode_ret(){
+    asm_code[i_len_temp_asm] = 'r';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'e';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 't';
+    i_len_temp_asm ++;
+}
+
+void gen_opcode_les(){
+    asm_code[i_len_temp_asm] = 'l';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'e';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 's';
+    i_len_temp_asm ++;
+}
+
+void gen_opcode_lds(){
+    asm_code[i_len_temp_asm] = 'l';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'd';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 's';
+    i_len_temp_asm ++;
+}
+
 /// symbol
 //  
 void gen_space(){
@@ -455,6 +482,17 @@ void gen_code_ptr(){
     asm_code[i_len_temp_asm] = 'p';
     i_len_temp_asm ++;
     asm_code[i_len_temp_asm] = 't';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'r';
+    i_len_temp_asm ++;
+}
+
+void gen_code_near(){
+    asm_code[i_len_temp_asm] = 'n';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'e';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'a';
     i_len_temp_asm ++;
     asm_code[i_len_temp_asm] = 'r';
     i_len_temp_asm ++;

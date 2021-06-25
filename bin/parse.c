@@ -685,6 +685,8 @@ void parse(){
             break;
         }
         case (char)0x62:{
+            // About this code understanding, there're also some problems of understanding.
+            // Haven't gotten the correct answer for this code...
             gen_opcode_bound();
             gen_space();
             i_index_read ++;
@@ -1326,6 +1328,101 @@ void parse(){
         case (char)0xc1:{
             cs_isGrp1 = state_grp2;
             cs_ieg = state_EvIb;
+            i_index_read ++;
+            parse_modrm();
+            break;
+        }
+        case (char)0xc2:{
+            // ret near xx xxh
+            cs_opcode = state_opcode_ret;
+            gen_opcode_ret();
+            i_index_read ++;
+            gen_space();
+            gen_code_near();
+            gen_space();
+            gen_2b_imm();
+            break;
+        }
+        case (char)0xc3:{
+            // ret near
+            cs_opcode = state_opcode_ret;
+            gen_opcode_ret();
+            i_index_read ++;
+            gen_space();
+            gen_code_near();
+            break;
+        }
+        case (char)0xc4:{
+            // The default address is 32 bits.
+            cs_opcode = state_opcode_les;
+            gen_opcode_les();
+            i_index_read ++;
+            gen_space();
+            if (cs_66p == state_66p){
+                // les ax, ds:[xxh]
+                // Attention !!!
+                cs_ieg = state_only_Gw;
+                parse_modrm();
+                gen_comma();
+                gen_code_segment();
+                gen_4b_imm();
+                gen_rbracket();
+            } else {
+                // les eax, ds:[xxh]
+                // Attention !!!
+                cs_ieg = state_only_Gv;
+                parse_modrm();
+                gen_comma();
+                gen_code_segment();
+                gen_4b_imm();
+                gen_rbracket();
+            }
+            gen_code_bh();
+            gen_comma();
+            gen_1b_imm();
+            break;
+        }
+        case (char)0xc5:{
+            // The default address is 32 bits.
+            cs_opcode = state_opcode_lds;
+            gen_opcode_lds();
+            i_index_read ++;
+            gen_space();
+            if (cs_66p == state_66p){
+                // lds ax, ds:[xxh]
+                // Attention !!!
+                cs_ieg = state_only_Gw;
+                parse_modrm();
+                gen_comma();
+                gen_code_segment();
+                gen_4b_imm();
+                gen_rbracket();
+            } else {
+                // lds eax, ds:[xxh]
+                // Attention !!!
+                cs_ieg = state_only_Gv;
+                parse_modrm();
+                gen_comma();
+                gen_code_segment();
+                gen_4b_imm();
+                gen_rbracket();
+            }
+            gen_code_bh();
+            gen_comma();
+            gen_1b_imm();
+            break;
+        }
+        case (char)0xc6:{
+            // Grp11 Mov
+            cs_isGrp1 = state_grp11;
+            cs_ieg = state_EbIb;
+            i_index_read ++;
+            parse_modrm();
+            break;
+        }
+        case (char)0xc7:{
+            cs_isGrp1 = state_grp11;
+            cs_ieg = state_EvIv;
             i_index_read ++;
             parse_modrm();
             break;

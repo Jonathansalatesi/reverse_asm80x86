@@ -38,6 +38,14 @@ void parse_modrm();
 enum code_state{
     state_init,
 
+    state_only_Eb,
+    state_only_Ew,
+    state_only_Ev,
+
+    state_only_Gb,
+    state_only_Gw,
+    state_only_Gv,
+
     state_EvGv,
     state_GvEv,
 
@@ -67,6 +75,7 @@ enum code_state{
 
     state_grp1,
     state_grp2,
+    state_grp11,
 
     state_opcode_add,
     state_opcode_push,
@@ -98,6 +107,9 @@ enum code_state{
     state_opcode_mov,
     state_opcode_movs,
     state_opcode_cmps,
+    state_opcode_ret,
+    state_opcode_les,
+    state_opcode_lds,
 
     state_end
 };
@@ -144,6 +156,9 @@ void gen_opcode_nop();      // nop
 void gen_opcode_mov();      // mov
 void gen_opcode_movs();     // movs
 void gen_opcode_cmps();     // cmps
+void gen_opcode_ret();      // ret
+void gen_opcode_les();      // les
+void gen_opcode_lds();      // lds
 
 void gen_space();           //  
 void gen_comma();           // ,
@@ -159,6 +174,7 @@ void gen_code_word();       // word
 void gen_code_dword();      // dword
 
 void gen_code_ptr();        // ptr
+void gen_code_near();       // near
 
 void gen_code_ds();         // ds
 void gen_code_es();         // es
