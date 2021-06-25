@@ -508,6 +508,13 @@ void gen_code_al(){
     i_len_temp_asm ++;
 }
 
+void gen_code_ah(){
+    asm_code[i_len_temp_asm] = 'a';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'h';
+    i_len_temp_asm ++;
+}
+
 void gen_code_ax(){
     asm_code[i_len_temp_asm] = 'a';
     i_len_temp_asm ++;
@@ -528,6 +535,13 @@ void gen_code_bl(){
     asm_code[i_len_temp_asm] = 'b';
     i_len_temp_asm ++;
     asm_code[i_len_temp_asm] = 'l';
+    i_len_temp_asm ++;
+}
+
+void gen_code_bh(){
+    asm_code[i_len_temp_asm] = 'b';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'h';
     i_len_temp_asm ++;
 }
 
@@ -554,6 +568,13 @@ void gen_code_cl(){
     i_len_temp_asm ++;
 }
 
+void gen_code_ch(){
+    asm_code[i_len_temp_asm] = 'c';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'h';
+    i_len_temp_asm ++;
+}
+
 void gen_code_cx(){
     asm_code[i_len_temp_asm] = 'c';
     i_len_temp_asm ++;
@@ -574,6 +595,13 @@ void gen_code_dl(){
     asm_code[i_len_temp_asm] = 'd';
     i_len_temp_asm ++;
     asm_code[i_len_temp_asm] = 'l';
+    i_len_temp_asm ++;
+}
+
+void gen_code_dh(){
+    asm_code[i_len_temp_asm] = 'd';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'h';
     i_len_temp_asm ++;
 }
 

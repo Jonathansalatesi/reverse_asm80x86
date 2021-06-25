@@ -1227,6 +1227,109 @@ void parse(){
             }
             break;
         }
+        case (char)0xb0:{
+            // mov al, xxh
+            cs_opcode = state_opcode_mov;
+            gen_opcode_mov();
+            i_index_read ++;
+            gen_space();
+            gen_code_al();
+            gen_comma();
+            gen_1b_imm();
+            break;
+        }
+        case (char)0xb1:{
+            // mov cl, xxh
+            cs_opcode = state_opcode_mov;
+            gen_opcode_mov();
+            i_index_read ++;
+            gen_space();
+            gen_code_cl();
+            gen_comma();
+            gen_1b_imm();
+            break;
+        }
+        case (char)0xb2:{
+            // mov dl, xxh
+            cs_opcode = state_opcode_mov;
+            gen_opcode_mov();
+            i_index_read ++;
+            gen_space();
+            gen_code_dl();
+            gen_comma();
+            gen_1b_imm();
+            break;
+        }
+        case (char)0xb3:{
+            // mov bl, xxh
+            cs_opcode = state_opcode_mov;
+            gen_opcode_mov();
+            i_index_read ++;
+            gen_space();
+            gen_code_bl();
+            gen_comma();
+            gen_1b_imm();
+            break;
+        }
+        case (char)0xb4:{
+            // mov ah, xxh
+            cs_opcode = state_opcode_mov;
+            gen_opcode_mov();
+            i_index_read ++;
+            gen_space();
+            gen_code_ah();
+            gen_comma();
+            gen_1b_imm();
+            break;
+        }
+        case (char)0xb5:{
+            // mov ch, xxh
+            cs_opcode = state_opcode_mov;
+            gen_opcode_mov();
+            i_index_read ++;
+            gen_space();
+            gen_code_ch();
+            gen_comma();
+            gen_1b_imm();
+            break;
+        }
+        case (char)0xb6:{
+            // mov dh, xxh
+            cs_opcode = state_opcode_mov;
+            gen_opcode_mov();
+            i_index_read ++;
+            gen_space();
+            gen_code_dh();
+            gen_comma();
+            gen_1b_imm();
+            break;
+        }
+        case (char)0xb7:{
+            // mov bh, xxh
+            cs_opcode = state_opcode_mov;
+            gen_opcode_mov();
+            i_index_read ++;
+            gen_space();
+            gen_code_bh();
+            gen_comma();
+            gen_1b_imm();
+            break;
+        }
+        case (char)0xc0:{
+            // shift Grp2
+            cs_isGrp1 = state_grp2;
+            cs_ieg = state_EbIb;
+            i_index_read ++;
+            parse_modrm();
+            break;
+        }
+        case (char)0xc1:{
+            cs_isGrp1 = state_grp2;
+            cs_ieg = state_EvIb;
+            i_index_read ++;
+            parse_modrm();
+            break;
+        }
         // !!!
         default:{
             break;

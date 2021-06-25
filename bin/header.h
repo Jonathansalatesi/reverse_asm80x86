@@ -66,6 +66,7 @@ enum code_state{
     state_op_repne,
 
     state_grp1,
+    state_grp2,
 
     state_opcode_add,
     state_opcode_push,
@@ -167,15 +168,19 @@ void gen_code_fs();         // fs
 void gen_code_gs();         // gs
 
 void gen_code_al();         // al
+void gen_code_ah();         // ah
 void gen_code_ax();         // ax
 void gen_code_eax();        // eax
 void gen_code_bl();         // bl
+void gen_code_bh();         // bh
 void gen_code_bx();         // bx
 void gen_code_ebx();        // ebx
 void gen_code_cl();         // cl
+void gen_code_ch();         // ch
 void gen_code_cx();         // cx
 void gen_code_ecx();        // ecx
 void gen_code_dl();         // dl
+void gen_code_dh();         // dh
 void gen_code_dx();         // dx
 void gen_code_edx();        // edx
 
