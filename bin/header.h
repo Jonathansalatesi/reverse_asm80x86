@@ -33,6 +33,7 @@ void init_code_arr();
 
 void reinit_arr();
 void parse();
+void parse_2b_opcode();
 void parse_modrm();
 
 enum code_state{
@@ -59,8 +60,15 @@ enum code_state{
     state_EvIb,
     state_EvIv,
 
+    state_Eb1,
+    state_Ev1,
+
+    state_EbCL,
+    state_EvCL,
+
     state_66p,
     state_16b_addr,
+    state_3ps,
 
     state_segment_default,
     state_segment_es,
@@ -75,6 +83,7 @@ enum code_state{
 
     state_grp1,
     state_grp2,
+    state_grp3,
     state_grp11,
 
     state_opcode_add,
@@ -110,6 +119,27 @@ enum code_state{
     state_opcode_ret,
     state_opcode_les,
     state_opcode_lds,
+    state_opcode_aam,
+    state_opcode_aad,
+    state_opcode_xlat,
+    state_opcode_loopne,
+    state_opcode_loope,
+    state_opcode_loop,
+    state_opcode_jcxz,
+    state_opcode_in,
+    state_opcode_out,
+    state_opcode_hlt,
+    state_opcode_cmc,
+    state_opcode_or,
+    state_opcode_sbb,
+    state_opcode_sub,
+    state_opcode_cmp,
+    state_opcode_das,
+    state_opcode_aas,
+    state_opcode_dec,
+    state_opcode_imul,
+    state_opcode_ins,
+    state_opcode_outs,
 
     state_end
 };
@@ -120,7 +150,8 @@ enum code_state cs_16b_addr;
 enum code_state cs_66p;
 enum code_state cs_segment;
 enum code_state cs_op_re;
-enum code_state cs_isGrp1;
+enum code_state cs_isGrp;
+enum code_state cs_3ps;         // Three parameters for one code
 
 void gen_1b_imm();
 void gen_2b_imm();
@@ -155,10 +186,38 @@ void gen_opcode_xchg();     // xchg
 void gen_opcode_nop();      // nop
 void gen_opcode_mov();      // mov
 void gen_opcode_movs();     // movs
+void gen_opcode_movsb();    // movsb
+void gen_opcode_movsw();    // movsw
+void gen_opcode_movsd();    // movsd
 void gen_opcode_cmps();     // cmps
 void gen_opcode_ret();      // ret
 void gen_opcode_les();      // les
 void gen_opcode_lds();      // lds
+void gen_opcode_aam();      // aam
+void gen_opcode_aad();      // aad
+void gen_opcode_xlat();     // xlat
+void gen_opcode_loopne();   // loopne
+void gen_opcode_loope();    // loope
+void gen_opcode_loop();     // loop
+void gen_opcode_jcxz();     // jcxz
+void gen_opcode_in();       // in
+void gen_opcode_out();      // out
+void gen_opcode_hlt();      // hlt
+void gen_opcode_cmc();      // cmc
+void gen_opcode_or();       // or
+void gen_opcode_sbb();      // sbb
+void gen_opcode_sub();      // sub
+void gen_opcode_cmp();      // cmp
+void gen_opcode_das();      // das
+void gen_opcode_aas();      // aas
+void gen_opcode_dec();      // dec
+void gen_opcode_imul();     // imul
+void gen_opcode_insb();     // insb
+void gen_opcode_insw();     // insw
+void gen_opcode_insd();     // insd
+void gen_opcode_outsb();    // outsb
+void gen_opcode_outsw();    // outsw
+void gen_opcode_outsd();    // outsd
 
 void gen_space();           //  
 void gen_comma();           // ,

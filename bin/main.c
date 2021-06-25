@@ -2,7 +2,7 @@
 
 
 int main(){
-    char st[6] = {0x66, 0xb7, 0x49, 0x01, 0x00, 0x02};
+    char st[6] = {0x68, 0x00, 0x00, 0x01, 0x00, 0x02};
     contain = st;
     init_code_arr();
 
@@ -10,6 +10,7 @@ int main(){
     for (int i = 0; i < i_len_temp_asm; i++){
         printf("%c", asm_code[i]);
     }
+    return 0;
 }
 
 // test for file reader
