@@ -301,6 +301,75 @@ void gen_opcode_jnbe(){
     i_len_temp_asm ++;
 }
 
+void gen_opcode_js(){
+    asm_code[i_len_temp_asm] = 'j';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 's';
+    i_len_temp_asm ++;
+}
+
+void gen_opcode_jns(){
+    asm_code[i_len_temp_asm] = 'j';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'n';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 's';
+    i_len_temp_asm ++;
+}
+
+void gen_opcode_jp(){
+    asm_code[i_len_temp_asm] = 'j';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'p';
+    i_len_temp_asm ++;
+}
+
+void gen_opcode_jnp(){
+    asm_code[i_len_temp_asm] = 'j';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'n';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'p';
+    i_len_temp_asm ++;
+}
+
+void gen_opcode_jl(){
+    asm_code[i_len_temp_asm] = 'j';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'l';
+    i_len_temp_asm ++;
+}
+
+void gen_opcode_jnl(){
+    asm_code[i_len_temp_asm] = 'j';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'n';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'l';
+    i_len_temp_asm ++;
+}
+
+void gen_opcode_jle(){
+    asm_code[i_len_temp_asm] = 'j';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'l';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'e';
+    i_len_temp_asm ++;
+}
+
+void gen_opcode_jnle(){
+    asm_code[i_len_temp_asm] = 'j';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'n';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'l';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'e';
+    i_len_temp_asm ++;
+}
+
+
 void gen_opcode_test(){
     asm_code[i_len_temp_asm] = 't';
     i_len_temp_asm ++;
@@ -686,6 +755,64 @@ void gen_opcode_outsd(){
     i_len_temp_asm ++;
 }
 
+void gen_opcode_lea(){
+    asm_code[i_len_temp_asm] = 'l';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'e';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'a';
+    i_len_temp_asm ++;
+}
+
+void gen_opcode_cbw(){
+    asm_code[i_len_temp_asm] = 'c';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'b';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'w';
+    i_len_temp_asm ++;
+}
+
+void gen_opcode_cwde(){
+    asm_code[i_len_temp_asm] = 'c';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'w';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'd';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'e';
+    i_len_temp_asm ++;
+}
+
+void gen_opcode_cwd(){
+    asm_code[i_len_temp_asm] = 'c';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'w';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'd';
+    i_len_temp_asm ++;
+}
+
+void gen_opcode_cdq(){
+    asm_code[i_len_temp_asm] = 'c';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'd';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'q';
+    i_len_temp_asm ++;
+}
+
+void gen_opcode_call(){
+    asm_code[i_len_temp_asm] = 'c';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'a';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'l';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'l';
+    i_len_temp_asm ++;
+}
+
 /// symbol
 //  
 void gen_space(){
@@ -787,6 +914,15 @@ void gen_code_near(){
     asm_code[i_len_temp_asm] = 'n';
     i_len_temp_asm ++;
     asm_code[i_len_temp_asm] = 'e';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'a';
+    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm] = 'r';
+    i_len_temp_asm ++;
+}
+
+void gen_code_far(){
+    asm_code[i_len_temp_asm] = 'f';
     i_len_temp_asm ++;
     asm_code[i_len_temp_asm] = 'a';
     i_len_temp_asm ++;
@@ -1022,7 +1158,7 @@ void gen_code_edi(){
 
 // complex gen func
 // segment
-void gen_code_segment(){
+void gen_code_segname(){
     if (cs_segment == state_segment_default){
         gen_code_ds();
     } else if (cs_segment == state_segment_es){
@@ -1038,6 +1174,10 @@ void gen_code_segment(){
     } else if (cs_segment == state_segment_gs){
         gen_code_gs();
     }
+}
+
+void gen_code_segment(){
+    gen_code_segname();
     gen_colon();
     gen_lbracket();
 }

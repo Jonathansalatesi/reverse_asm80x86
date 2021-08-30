@@ -2196,6 +2196,186 @@ void parse(){
             cs_opcode = state_opcode_outs;
             break;
         }
+        case (char)0x78:{
+            gen_opcode_js();
+            gen_code_jcc();
+            cs_opcode = state_opcode_js;
+            break;
+        }
+        case (char)0x79:{
+            gen_opcode_jns();
+            gen_code_jcc();
+            cs_opcode = state_opcode_jns;
+            break;
+        }
+        case (char)0x7a:{
+            gen_opcode_jp();
+            gen_code_jcc();
+            cs_opcode = state_opcode_jp;
+            break;
+        }
+        case (char)0x7b:{
+            gen_opcode_jnp();
+            gen_code_jcc();
+            cs_opcode = state_opcode_jnp;
+            break;
+        }
+        case (char)0x7c:{
+            gen_opcode_jl();
+            gen_code_jcc();
+            cs_opcode = state_opcode_jl;
+            break;
+        }
+        case (char)0x7d:{
+            gen_opcode_jnl();
+            gen_code_jcc();
+            cs_opcode = state_opcode_jnl;
+            break;
+        }
+        case (char)0x7e:{
+            gen_opcode_jle();
+            gen_code_jcc();
+            cs_opcode = state_opcode_jle;
+            break;
+        }
+        case (char)0x7f:{
+            gen_opcode_jnle();
+            gen_code_jcc();
+            cs_opcode = state_opcode_jnle;
+            break;
+        }
+        case (char)0x88:{
+            gen_opcode_mov();
+            gen_space();
+            cs_opcode = state_opcode_mov;
+            cs_ieg = state_EbGb;
+            i_index_read ++;
+            parse_modrm();
+            break;
+        }
+        case (char)0x89:{
+            gen_opcode_mov();
+            gen_space();
+            cs_opcode = state_opcode_mov;
+            if (cs_66p == state_66p){
+                cs_ieg = state_EwGw;
+            } else {
+                cs_ieg = state_EvGv;
+            }
+            i_index_read ++;
+            parse_modrm();
+            break;
+        }
+        case (char)0x8a:{
+            gen_opcode_mov();
+            gen_space();
+            cs_opcode = state_opcode_mov;
+            cs_ieg = state_GbEb;
+            i_index_read ++;
+            parse_modrm();
+            break;
+        }
+        case (char)0x8b:{
+            gen_opcode_mov();
+            gen_space();
+            cs_opcode = state_opcode_mov;
+            if (cs_66p == state_66p){
+                cs_ieg = state_GwEw;
+            } else {
+                cs_ieg = state_GvEv;
+            }
+            i_index_read ++;
+            parse_modrm();
+            break;
+        }
+        case (char)0x8c:{
+            gen_opcode_mov();
+            gen_space();
+            if (cs_66p == state_66p){
+                cs_ieg = state_only_Ew;
+            } else {
+                cs_ieg = state_only_Ev;
+            }
+            i_index_read ++;
+            parse_modrm();
+            gen_comma();
+            gen_code_segname();
+            break;
+        }
+        case (char)0x8d:{
+            gen_opcode_lea();
+            gen_space();
+            if (cs_66p = state_66p){
+                cs_ieg = state_GwEw;
+            } else {
+                cs_ieg = state_GvEv;
+            }
+            i_index_read ++;
+            parse_modrm();
+            gen_comma();
+            gen_code_segname();
+            break;
+        }
+        case (char)0x8e:{
+            gen_opcode_mov();
+            gen_space();
+            gen_code_segname();
+            gen_comma();
+            cs_ieg = state_only_Ew;
+            i_index_read ++;
+            parse_modrm();
+            break;
+        }
+        case (char)0x8f:{
+            // Grp 1A, pop Ev
+            cs_isGrp = state_grp1a;
+            cs_ieg = state_only_Ev;
+            cs_opcode = state_opcode_pop;
+            i_index_read ++;
+            parse_modrm();
+            break;
+        }
+        case (char)0x98:{
+            // cbw / cwde
+            if (cs_66p = state_66p){
+                cs_opcode = state_opcode_cbw;
+                gen_opcode_cbw();
+            } else {
+                cs_opcode = state_opcode_cwde;
+                gen_opcode_cwde();
+            }
+            i_index_read ++;
+            break;
+        }
+        case (char)0x99:{
+            // cwd / cdq
+            if (cs_66p = state_66p){
+                cs_opcode = state_opcode_cwd;
+                gen_opcode_cwd();
+            } else {
+                cs_opcode = state_opcode_cdq;
+                gen_opcode_cdq();
+            }
+            i_index_read ++;
+            break;
+        }
+        case (char)0x9a:{
+            // far call Ap
+            gen_opcode_call();
+            i_index_read ++;
+            gen_space();
+            gen_code_far();
+            gen_space();
+            gen_code_ptr();
+            gen_space();
+            i_index_read += 4;
+            gen_2b_imm();
+            gen_colon();
+            i_index_read -= 6;
+            gen_4b_imm();
+            i_index_read += 2;
+            break;
+        }
         // !!!
         default:{
             i_index_read ++;

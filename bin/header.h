@@ -82,6 +82,7 @@ enum code_state{
     state_op_repne,
 
     state_grp1,
+    state_grp1a,
     state_grp2,
     state_grp3,
     state_grp11,
@@ -102,6 +103,7 @@ enum code_state{
     state_opcode_bound,
     state_opcode_arpl,
     state_opcode_movsxd,
+
     state_opcode_jo,
     state_opcode_jno,
     state_opcode_jb,
@@ -110,6 +112,16 @@ enum code_state{
     state_opcode_jnz,
     state_opcode_jbe,
     state_opcode_jnbe,
+
+    state_opcode_js,
+    state_opcode_jns,
+    state_opcode_jp,
+    state_opcode_jnp,
+    state_opcode_jl,
+    state_opcode_jnl,
+    state_opcode_jle,
+    state_opcode_jnle,
+
     state_opcode_test,
     state_opcode_xchg,
     state_opcode_nop,
@@ -140,6 +152,14 @@ enum code_state{
     state_opcode_imul,
     state_opcode_ins,
     state_opcode_outs,
+    state_opcode_lea,
+
+    state_opcode_cbw,
+    state_opcode_cwde,
+    state_opcode_cwd,
+    state_opcode_cdq,
+
+    state_opcode_call,
 
     state_end
 };
@@ -181,6 +201,16 @@ void gen_opcode_jz();       // jz
 void gen_opcode_jnz();      // jnz
 void gen_opcode_jbe();      // jbe
 void gen_opcode_jnbe();     // jnbe
+
+void gen_opcode_js();       // js
+void gen_opcode_jns();      // jns
+void gen_opcode_jp();       // jp
+void gen_opcode_jnp();      // jnp
+void gen_opcode_jl();       // jl
+void gen_opcode_jnl();      // jnl
+void gen_opcode_jle();      // jle
+void gen_opcode_jnle();     // jnle
+
 void gen_opcode_test();     // test
 void gen_opcode_xchg();     // xchg
 void gen_opcode_nop();      // nop
@@ -219,6 +249,15 @@ void gen_opcode_outsb();    // outsb
 void gen_opcode_outsw();    // outsw
 void gen_opcode_outsd();    // outsd
 
+void gen_opcode_lea();      // lea
+
+void gen_opcode_cbw();      // cbw
+void gen_opcode_cwde();     // cwde
+void gen_opcode_cwd();      // cwd
+void gen_opcode_cdq();      // cdq
+
+void gen_opcode_call();     // call
+
 void gen_space();           //  
 void gen_comma();           // ,
 void gen_lbracket();        // [
@@ -234,6 +273,7 @@ void gen_code_dword();      // dword
 
 void gen_code_ptr();        // ptr
 void gen_code_near();       // near
+void gen_code_far();        // far
 
 void gen_code_ds();         // ds
 void gen_code_es();         // es
@@ -269,5 +309,6 @@ void gen_code_di();         // di
 void gen_code_edi();        // edi
 
 // complex
+void gen_code_segname();    // ds, cs, ss, gs, fs, es
 void gen_code_segment();    // ds:[, cs:[ ...
 void gen_code_jcc();        //  $ + 0x.. 
