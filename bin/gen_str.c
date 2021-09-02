@@ -2,14 +2,14 @@
 
 /// Imm
 void gen_1b_imm(){
-    char* c_temp = dig2hex(contain[i_index_read]);
-    i_index_read ++;
-    asm_code[i_len_temp_asm] = c_temp[0];
-    i_len_temp_asm ++;
-    asm_code[i_len_temp_asm] = c_temp[1];
-    i_len_temp_asm ++;
-    asm_code[i_len_temp_asm] = 'h';
-    i_len_temp_asm ++;
+    char* c_temp = dig2hex(contain[i_index_read++]);
+//    i_index_read ++;
+    asm_code[i_len_temp_asm++] = c_temp[0];
+//    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm++] = c_temp[1];
+//    i_len_temp_asm ++;
+    asm_code[i_len_temp_asm++] = 'h';
+//    i_len_temp_asm ++;
 }
 
 void gen_2b_imm(){
@@ -814,7 +814,7 @@ void gen_opcode_call(){
 }
 
 /// symbol
-//  
+//
 void gen_space(){
     asm_code[i_len_temp_asm] = ' ';
     i_len_temp_asm ++;
